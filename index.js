@@ -19,6 +19,7 @@ app.use(
   cors({
     credentials: true,
     origin: ["http://icict4sd.bup.edu.bd"],
+    // origin: ["http://localhost:3000"],
   })
 );
 app.use(cookieParser());

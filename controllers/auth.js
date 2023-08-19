@@ -19,6 +19,7 @@ export const login = async (req, res, next) => {
     res
       .cookie("access_token", token, {
         httpOnly: true,
+        expiresIn: "1d",
       })
       .status(200)
       .json({ authentication: "user authenticated successfully", userDetails });
