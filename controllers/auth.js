@@ -19,7 +19,8 @@ export const login = async (req, res, next) => {
     res
       .cookie("access_token", token, {
         httpOnly: true,
-        expiresIn: "1d",
+        maxAge: 86400,
+        secure: true,
       })
       .status(200)
       .json({ authentication: "user authenticated successfully", userDetails });
@@ -29,7 +30,7 @@ export const login = async (req, res, next) => {
 };
 export const logout = async (req, res, next) => {
   try {
-    res.cookie("access_token", "", { maxAge: -100, httpOnly: true }).status(200).json({ authentication: "Logged out successfully" });
+    res.cookie("access_token", "", { maxAge: -100, httpOnly: true, secure: true }).status(200).json({ authentication: "Logged out successfully" });
   } catch (err) {
     next(err);
   }
