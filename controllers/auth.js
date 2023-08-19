@@ -21,6 +21,7 @@ export const login = async (req, res, next) => {
         httpOnly: true,
         maxAge: 86400,
         secure: true,
+        sameSite: "none",
       })
       .status(200)
       .json({ authentication: "user authenticated successfully", userDetails });
@@ -30,7 +31,7 @@ export const login = async (req, res, next) => {
 };
 export const logout = async (req, res, next) => {
   try {
-    res.cookie("access_token", "", { maxAge: -100, httpOnly: true, secure: true }).status(200).json({ authentication: "Logged out successfully" });
+    res.cookie("access_token", "", { maxAge: -100, httpOnly: true, secure: true, sameSite: "none" }).status(200).json({ authentication: "Logged out successfully" });
   } catch (err) {
     next(err);
   }
