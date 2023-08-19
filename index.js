@@ -13,13 +13,14 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept");
   next();
 });
-const corsConfig = {
-  origin: true,
-  credentials: true,
-};
+
 //middlewares Start
-app.use(cors(corsConfig));
-app.options("*", cors(corsConfig));
+app.use(
+  cors({
+    credentials: true,
+    origin: ["http://localhost:3000"],
+  })
+);
 app.use(cookieParser());
 app.use(express.json());
 app.use(formData.parse());
